@@ -1,10 +1,17 @@
 import ProductCard from "@/component/productCard";
 import { connectDb } from "@/lib/db";
 import productModel from "@/model/mongoosemodel";
+
 export default async function Products() {
   await connectDb();
 
   const items = await productModel.find({}).lean();
+  let safeData = items.map((item) => {
+    return {
+      ...item,
+      _id: item._id.toString(),
+    };
+  });
 
   return (
     <div>
@@ -12,9 +19,9 @@ export default async function Products() {
         <h1>products</h1>
       </div>
       <div className="grid grid-cols-5">
-        {items && items.length > 0
-          ? items.map((item) => (
-              <ProductCard key={item._id.toString()} item={item} />
+        {safeData && safeData.length > 0
+          ? safeData.map((item) => (
+              <ProductCard key={item._id} item={item} />
             ))
           : ""}
       </div>
