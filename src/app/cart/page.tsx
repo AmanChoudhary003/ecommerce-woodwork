@@ -14,7 +14,7 @@ export default function Cart() {
       <div>
         <h1>Cart</h1>
 
-        {shoppingList.length === 0 && "<p>Your Cart is empty</p>"}
+        {shoppingList.length === 0 && <p>Your Cart is empty</p>}
       </div>
       <div>
         {shoppingList.map((item) => {
