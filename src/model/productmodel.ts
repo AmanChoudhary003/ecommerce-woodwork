@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-interface product {
+interface Product {
   name: string;
   img: string;
   desc: string;
@@ -11,7 +11,7 @@ interface product {
   updatedAt: Date;
 }
 
-const productSchema = new mongoose.Schema<product>(
+const productSchema = new mongoose.Schema<Product>(
   {
     name: {
       type: String,
@@ -42,6 +42,6 @@ const productSchema = new mongoose.Schema<product>(
 );
 
 const productModel =
-  mongoose.models.Product || mongoose.model<product>("Product", productSchema);
+  mongoose.models.Product || mongoose.model<Product>("Product", productSchema);
 
 export default productModel;

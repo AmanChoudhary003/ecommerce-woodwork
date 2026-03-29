@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import { connectDb } from "@/lib/db";
-import productModel from "@/model/mongoosemodel";
-import { NextRequest } from "next/server";
+import productModel from "@/model/productmodel";
+import { NextRequest, NextResponse } from "next/server";
+
+
 export async function GET(req: NextRequest) {
   await connectDb();
 
@@ -9,7 +11,7 @@ export async function GET(req: NextRequest) {
   const cursor = searchParams.get("cursor");
 
   if (cursor && !mongoose.Types.ObjectId.isValid(cursor)) {
-    return Response.json(
+    return NextResponse.json(
       {
         error: "invalid Id",
       },
@@ -29,5 +31,5 @@ export async function GET(req: NextRequest) {
     _id: item._id.toString(),
   }));
 
-  return Response.json({ itemsList: safeData }, { status: 200 });
+  return NextResponse.json({ itemsList: safeData }, { status: 200 });
 }

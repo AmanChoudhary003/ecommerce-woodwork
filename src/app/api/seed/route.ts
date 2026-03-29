@@ -1,5 +1,5 @@
 import { connectDb } from "@/lib/db";
-import productModel from "@/model/mongoosemodel";
+import productModel from "@/model/productmodel";
 import { productList } from "@/constant/constant";
 import { NextResponse } from "next/server";
 
