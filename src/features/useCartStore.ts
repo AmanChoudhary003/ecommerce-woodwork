@@ -14,6 +14,7 @@ interface cartStore {
   removeFromCart: (_id: string) => void;
   increaseQty: (_id: string) => void;
   decreaseQty: (_id: string) => void;
+  clearCart: () => void;
 }
 
 export const useCartStore = create<cartStore>()(
@@ -59,6 +60,7 @@ export const useCartStore = create<cartStore>()(
             item._id === _id ? { ...item, quantity: item.quantity - 1 } : item,
           ),
         })),
+      clearCart: () => set({ shoppingList: [] }),
     }),
     {
       name: "cart-storage",

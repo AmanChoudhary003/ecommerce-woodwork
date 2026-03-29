@@ -1,7 +1,6 @@
 export const Pagelink = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
-  { label: "Register", href: "/register" },
   { label: "Cart", href: "/cart" },
 ];
 

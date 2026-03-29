@@ -1,10 +1,14 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function Register() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState<boolean>(false);
+
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,12 +24,23 @@ export default function Register() {
       // if error show it and don't reset the form
       const resultData = await response.json();
       if (!response.ok || resultData.error) {
-        setError("Something went wrong");
+        setError(resultData.error || "Something went wrong");
         return;
       }
 
       // if user is registered
-      alert("user created");
+
+      if (response.ok) {
+        const result = await signIn("credentials", {
+          redirect: false,
+          email: formData.email,
+          password: formData.password,
+        });
+        if (result?.ok) {
+          router.push("/");
+          router.refresh();
+        }
+      }
       handleReset();
     } catch (err) {
       setError("Network error, Please try again");
