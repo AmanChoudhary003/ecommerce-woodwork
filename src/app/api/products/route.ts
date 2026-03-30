@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { connectDb } from "@/lib/db";
-import productModel from "@/model/productmodel";
+import { connectDb } from "@/libs/db";
+import productModel from "@/models/productmodel";
 import { NextRequest, NextResponse } from "next/server";
 
 

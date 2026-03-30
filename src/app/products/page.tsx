@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect, useRef, useCallback } from "react";
-import ProductCard from "@/component/productCard";
+import ProductCard from "@/components/productCard";
 
 interface productItem {
   _id: string;

@@ -1,5 +1,5 @@
-import { connectDb } from "@/lib/db";
-import productModel from "@/model/productmodel";
+import { connectDb } from "@/libs/db";
+import productModel from "@/models/productmodel";
 import { productList } from "@/constant/constant";
 import { NextResponse } from "next/server";
 

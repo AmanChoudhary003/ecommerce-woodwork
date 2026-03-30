@@ -1,4 +1,4 @@
-import CartPage from "@/component/cartPage";
+import CartPage from "@/components/cart/cartPage";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/features/useAuth";

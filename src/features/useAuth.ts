@@ -1,9 +1,9 @@
-import { connectDb } from "@/lib/db";
+import { connectDb } from "@/libs/db";
 
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import userModel from "@/model/usermodel";
+import userModel from "@/models/usermodel";
 
 export const authOptions: NextAuthOptions = {
   providers: [
