@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
           .findOne({
             email: credentials?.email,
           })
-          .select("+password");
+          .select("+password +role");
         if (!user) {
           throw new Error("User not found");
         }
@@ -34,6 +34,7 @@ export const authOptions: NextAuthOptions = {
         return {
           id: user._id.toString(),
           email: user.email,
+          role: user.role,
         };
       },
     }),
@@ -50,12 +51,14 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.role = user.role;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub as string;
+        session.user.id = token.id;
+        session.user.role = token.role;
       }
       return session;
     },

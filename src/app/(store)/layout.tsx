@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import SessionWrapper from "./provider";
+import "../globals.css";
+import SessionWrapper from "../provider";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 import CartLoader from "@/components/cart/cartLoader";
-
+import SignOutBtn from "@/components/signoutButton";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -35,7 +37,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SessionWrapper>
           <CartLoader />
+          <Navbar />
           {children}
+          <Footer />
         </SessionWrapper>
       </body>
     </html>

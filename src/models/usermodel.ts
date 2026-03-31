@@ -4,8 +4,8 @@ interface User {
   email: string;
   password: string;
   username: string;
-  bio: string;
   phone: number;
+  role: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -22,8 +22,13 @@ const userSchema = new mongoose.Schema<User>(
       select: false,
     },
     username: String,
-    bio: String,
     phone: Number,
+    role: {
+      type: String,
+      required: true,
+      enum: ["user", "admin"],
+      default: "user",
+    },
   },
   { timestamps: true },
 );

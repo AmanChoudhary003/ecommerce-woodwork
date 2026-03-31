@@ -79,6 +79,7 @@ export const useCartStore = create<cartStore>()(
 
       clearCart: () => {
         set({ shoppingList: [], isDirty: true });
+        localStorage.removeItem("cart-storage");
       },
 
       // changes in cart set the value of "isDirty"

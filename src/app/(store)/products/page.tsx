@@ -27,7 +27,7 @@ export default function Products() {
     const cursor = products.length > 0 ? products[products.length - 1]._id : "";
 
     try {
-      const res = await fetch(`/api/products?cursor=${cursor}`);
+      const res = await fetch(`/api/inventory?cursor=${cursor}`);
       const data = await res.json();
       if (data?.itemsList) {
         if (data.itemsList.length < 30) {
